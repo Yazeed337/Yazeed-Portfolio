@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yazeed Alshomar | IT & Data Science Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ====== CSS VARIABLES ====== */
         :root {
+            /* Light Theme Colors */
             --primary: #2c3e50;
             --secondary: #3498db;
             --accent: #1abc9c;
@@ -15,10 +17,31 @@
             --dark: #2c3e50;
             --gray: #95a5a6;
             --white: #ffffff;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --background: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-secondary: #555555;
+            
+            /* Dark Theme Colors */
+            --d-primary: #ecf0f1;
+            --d-secondary: #3498db;
+            --d-accent: #1abc9c;
+            --d-light: #121212;
+            --d-dark: #ecf0f1;
+            --d-gray: #b0b0b0;
+            --d-white: #1e1e1e;
+            --d-background: #121212;
+            --d-card-bg: #1e1e1e;
+            --d-text: #f5f5f5;
+            --d-text-secondary: #cccccc;
+            
+            /* Shared Variables */
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --border-radius: 8px;
         }
         
+        /* ====== BASE STYLES ====== */
         * {
             margin: 0;
             padding: 0;
@@ -26,11 +49,26 @@
         }
         
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Montserrat', 'Roboto', sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background-color: var(--light);
+            color: var(--text);
+            background-color: var(--background);
+            transition: background-color 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
+        }
+        
+        body.dark-mode {
+            --primary: var(--d-primary);
+            --secondary: var(--d-secondary);
+            --accent: var(--d-accent);
+            --light: var(--d-light);
+            --dark: var(--d-dark);
+            --gray: var(--d-gray);
+            --white: var(--d-white);
+            --background: var(--d-background);
+            --card-bg: var(--d-card-bg);
+            --text: var(--d-text);
+            --text-secondary: var(--d-text-secondary);
         }
         
         h1, h2, h3, h4, h5, h6 {
@@ -38,6 +76,11 @@
             font-weight: 600;
             margin-bottom: 1rem;
             color: var(--primary);
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
         }
         
         .container {
@@ -52,17 +95,18 @@
             padding: 0.8rem 1.8rem;
             background-color: var(--secondary);
             color: var(--white);
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: 500;
             transition: var(--transition);
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
         }
         
         .btn:hover {
-            background-color: #2980b9;
+            background-color: var(--primary);
             transform: translateY(-3px);
             box-shadow: var(--shadow);
         }
@@ -72,7 +116,7 @@
         }
         
         .btn-accent:hover {
-            background-color: #16a085;
+            background-color: var(--primary);
         }
         
         section {
@@ -97,7 +141,7 @@
             border-radius: 2px;
         }
         
-        /* Header & Navigation */
+        /* ====== HEADER & NAVIGATION ====== */
         header {
             background-color: var(--primary);
             color: var(--white);
@@ -126,6 +170,7 @@
             font-weight: 700;
             color: var(--white);
             text-decoration: none;
+            font-family: 'Poppins', sans-serif;
         }
         
         .logo span {
@@ -135,10 +180,11 @@
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         
         nav ul li {
-            margin-left: 2rem;
+            margin-left: 1.5rem;
         }
         
         nav ul li a {
@@ -147,6 +193,7 @@
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            font-family: 'Poppins', sans-serif;
         }
         
         nav ul li a:hover {
@@ -175,9 +222,31 @@
             color: var(--white);
             font-size: 1.5rem;
             cursor: pointer;
+            z-index: 1001;
         }
         
-        /* Hero Section */
+        /* Dark mode toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: var(--transition);
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ====== HERO SECTION ====== */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, #1a2530 100%);
             color: var(--white);
@@ -215,6 +284,7 @@
             font-size: 1.3rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            color: rgba(255, 255, 255, 0.85);
         }
         
         .hero-img {
@@ -248,13 +318,14 @@
             align-items: center;
             gap: 0.5rem;
             font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
         }
         
         .contact-item i {
             color: var(--accent);
         }
         
-        /* About Section */
+        /* ====== ABOUT SECTION ====== */
         .about-content {
             display: flex;
             gap: 3rem;
@@ -273,8 +344,8 @@
         }
         
         .stat-card {
-            background-color: var(--white);
-            border-radius: 8px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 1.5rem;
             text-align: center;
             box-shadow: var(--shadow);
@@ -298,14 +369,14 @@
             color: var(--secondary);
         }
         
-        /* Education Section */
+        /* ====== EDUCATION SECTION ====== */
         .education {
-            background-color: var(--white);
+            background-color: var(--card-bg);
         }
         
         .education-item {
-            background-color: var(--light);
-            border-radius: 8px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: var(--shadow);
@@ -322,11 +393,11 @@
             background-color: var(--accent);
             color: var(--white);
             padding: 0.3rem 0.8rem;
-            border-radius: 4px;
+            border-radius: var(--border-radius);
             font-weight: 500;
         }
         
-        /* Projects Section */
+        /* ====== PROJECTS SECTION ====== */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -334,8 +405,8 @@
         }
         
         .project-card {
-            background-color: var(--white);
-            border-radius: 8px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -387,11 +458,12 @@
         
         .project-link:hover {
             gap: 0.8rem;
+            color: var(--secondary);
         }
         
-        /* Skills Section */
+        /* ====== SKILLS SECTION ====== */
         .skills {
-            background-color: var(--white);
+            background-color: var(--background);
         }
         
         .skills-container {
@@ -401,8 +473,8 @@
         }
         
         .skill-category {
-            background-color: var(--light);
-            border-radius: 8px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 2rem;
             box-shadow: var(--shadow);
         }
@@ -422,6 +494,7 @@
             margin-bottom: 0.8rem;
             padding-left: 1.5rem;
             position: relative;
+            color: var(--text);
         }
         
         .skills-list li::before {
@@ -431,7 +504,7 @@
             color: var(--accent);
         }
         
-        /* Languages Section */
+        /* ====== LANGUAGES SECTION ====== */
         .languages-container {
             display: flex;
             justify-content: center;
@@ -440,8 +513,8 @@
         }
         
         .language-card {
-            background-color: var(--white);
-            border-radius: 8px;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 2rem;
             text-align: center;
             box-shadow: var(--shadow);
@@ -469,9 +542,9 @@
             font-weight: 500;
         }
         
-        /* Contact Section */
+        /* ====== CONTACT SECTION ====== */
         .contact {
-            background-color: var(--white);
+            background-color: var(--card-bg);
         }
         
         .contact-content {
@@ -483,7 +556,7 @@
             flex: 1;
             background-color: var(--primary);
             color: var(--white);
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             padding: 2rem;
             box-shadow: var(--shadow);
         }
@@ -511,6 +584,19 @@
             margin-top: 0.3rem;
         }
         
+        .contact-detail div {
+            flex: 1;
+        }
+        
+        .contact-detail h4 {
+            color: var(--white);
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-detail p {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
         .contact-form {
             flex: 1;
         }
@@ -523,6 +609,7 @@
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
+            color: var(--text);
         }
         
         .form-group input,
@@ -530,9 +617,18 @@
             width: 100%;
             padding: 0.8rem;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: 'Roboto', sans-serif;
+            border-radius: var(--border-radius);
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
+            background-color: var(--card-bg);
+            color: var(--text);
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            outline: none;
         }
         
         .form-group textarea {
@@ -540,7 +636,7 @@
             resize: vertical;
         }
         
-        /* Footer */
+        /* ====== FOOTER ====== */
         footer {
             background-color: var(--primary);
             color: var(--white);
@@ -586,7 +682,7 @@
             color: var(--gray);
         }
         
-        /* Animations */
+        /* ====== ANIMATIONS ====== */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -596,7 +692,7 @@
             animation: fadeIn 0.8s ease forwards;
         }
         
-        /* Responsive Design */
+        /* ====== RESPONSIVE DESIGN ====== */
         @media (max-width: 992px) {
             .about-content,
             .contact-content {
@@ -606,11 +702,19 @@
             .about-stats {
                 width: 100%;
             }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             nav ul {
@@ -630,7 +734,7 @@
             }
             
             nav ul li {
-                margin: 0.5rem 0;
+                margin: 1rem 0;
             }
             
             .mobile-menu-btn {
@@ -640,6 +744,13 @@
             .contact-info {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .theme-toggle {
+                position: absolute;
+                right: 70px;
+                top: 50%;
+                transform: translateY(-50%);
             }
         }
         
@@ -663,6 +774,11 @@
             .language-card {
                 width: 100%;
             }
+            
+            .hero-img {
+                width: 170px;
+                height: 170px;
+            }
         }
     </style>
 </head>
@@ -672,7 +788,10 @@
         <div class="container header-content">
             <a href="#" class="logo">Yazeed<span>.</span></a>
             <nav>
-                <button class="mobile-menu-btn">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul id="nav-menu">
@@ -702,10 +821,6 @@
                     <i class="fas fa-envelope"></i>
                     <span>yazeedyousifqu@gmail.com</span>
                 </div>
-                <!--<div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <span></span>
-                </div> -->
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Saudi Arabia</span>
@@ -763,7 +878,7 @@
                 <h4>Qassim University</h4>
                 <p>Graduated with an excellent GPA of 4.58/5, specializing in data management and analysis.</p>
                 <h5>Key Coursework:</h5>
-                <ul>
+                <ul class="skills-list">
                     <li>Data Mining and Warehousing</li>
                     <li>Advanced Database Systems</li>
                     <li>Information Security & Confidentiality</li>
@@ -787,7 +902,7 @@
                         <h3>SVM Classification: Muffin vs. Cupcake</h3>
                         <p class="project-meta">Data Mining & Warehousing Course</p>
                         <p>Forked and tested a hands-on SVM classification project based on Alice Zhao's tutorial. Explored how Support Vector Machines can classify binary categories based on real-world data (e.g., flour/sugar ratios).</p>
-                        <ul>
+                        <ul class="skills-list">
                             <li>Implemented using Python with scikit-learn</li>
                             <li>Utilized Pandas for data manipulation</li>
                             <li>Visualized results with Matplotlib</li>
@@ -806,7 +921,7 @@
                         <h3>Advanced Database System</h3>
                         <p class="project-meta">University Course Project</p>
                         <p>Designed and implemented a comprehensive database system for a university library management system. Focused on normalization, indexing, and query optimization.</p>
-                        <ul>
+                        <ul class="skills-list">
                             <li>Developed using SQL and PL/SQL</li>
                             <li>Implemented complex queries and stored procedures</li>
                             <li>Created user-friendly front-end interface</li>
@@ -825,7 +940,7 @@
                         <h3>Information Security Framework</h3>
                         <p class="project-meta">Information Security Course</p>
                         <p>Developed a security framework for protecting sensitive data in enterprise environments. Implemented encryption, access controls, and audit logging mechanisms.</p>
-                        <ul>
+                        <ul class="skills-list">
                             <li>Applied cryptographic techniques</li>
                             <li>Designed role-based access control system</li>
                             <li>Created security audit dashboard</li>
@@ -932,13 +1047,6 @@
                                 <p>yazeedyousifqu@gmail.com</p>
                             </div>
                         </div>
-                        <!--<div class="contact-detail">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <p></p>
-                            </div> -->
-                        </div>
                         <div class="contact-detail">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
@@ -988,7 +1096,6 @@
             <p>IT Graduate & Data Enthusiast</p>
             <div class="social-links">
                 <a href="mailto:yazeedyousifqu@gmail.com"><i class="fas fa-envelope"></i></a>
-                <!--<a href="tel:1234567890"><i class="fas fa-phone"></i></a> -->
                 <a href="https://linkedin.com/in/yazeed-alshomar-304257328/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/Yazeed337" target="_blank"><i class="fab fa-github"></i></a>
             </div>
@@ -999,15 +1106,15 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        // ====== MOBILE MENU TOGGLE ======
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
         
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('show');
         });
         
-        // Smooth scrolling for navigation links
+        // ====== SMOOTH SCROLLING ======
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1024,7 +1131,7 @@
             });
         });
         
-        // Form submission
+        // ====== FORM SUBMISSION ======
         const contactForm = document.getElementById('contactForm');
         
         contactForm.addEventListener('submit', function(e) {
@@ -1043,13 +1150,13 @@
             }
         });
         
-        // Add scroll animation to header
+        // ====== HEADER SCROLL EFFECT ======
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             header.classList.toggle('scrolled', window.scrollY > 50);
         });
         
-        // Fade-in animation for sections
+        // ====== FADE-IN ANIMATIONS ======
         const fadeElements = document.querySelectorAll('.fade-in');
         
         const fadeInObserver = new IntersectionObserver((entries) => {
@@ -1068,6 +1175,33 @@
             element.style.transform = 'translateY(20px)';
             element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             fadeInObserver.observe(element);
+        });
+        
+        // ====== DARK MODE TOGGLE ======
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else if (savedTheme === 'light') {
+            document.body.classList.remove('dark-mode');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+        }
+        
+        // Toggle theme when button is clicked
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
         });
     </script>
 </body>
